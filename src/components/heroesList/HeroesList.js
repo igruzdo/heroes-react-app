@@ -26,16 +26,17 @@ const HeroesList = () => {
 
     const filteredHeroes = useSelector(filteredHeroesSelector)
 
-    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus);
+    const heroesLoadingStatus = useSelector(state => state.heroesReducer.heroesLoadingStatus);
     const dispatch = useDispatch();
     const {request} = useHttp();
 
     useEffect(() => {
-        dispatch(heroesFetching());
+        dispatch('HEROES_FETCHING');
         request("http://localhost:3001/heroes")
             .then(data => dispatch(heroesFetched(data)))
             .catch(() => dispatch(heroesFetchingError()))
     }, []);
+
     const onDelete = useCallback((id) => {
         request(`http://localhost:3001/heroes/${id}`, "DELETE")
             .then(data => console.log(data, 'Deleted'))
