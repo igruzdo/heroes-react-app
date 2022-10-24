@@ -1,6 +1,7 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import heroesReducer from '../reducers/heroes';
 import filtersReducer from '../reducers/filters';
+import ReduxThunk from 'redux-thunk';
 
 //либо вместо store можно записать ({dispatch, getState})
 // const stringMiddleware = ({dispatch, getState}) => {
@@ -36,7 +37,7 @@ const enhanser = (createStore) => (...args) => {
 const store = createStore(
     combineReducers({heroesReducer,filtersReducer}),
     compose(
-        applyMiddleware(stringMiddleware),
+        applyMiddleware(ReduxThunk,stringMiddleware),
         compose(enhanser, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()),
     ),
 );
