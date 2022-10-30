@@ -1,27 +1,27 @@
-import { createReducer } from "@reduxjs/toolkit"
-import { 
-    heroCreated, 
-    heroDeleted, 
-    heroesFetched, 
-    heroesFetching, 
-    heroesFetchingError 
-} from "../actions";
+// import { createReducer } from "@reduxjs/toolkit"
+// import { 
+//     heroCreated, 
+//     heroDeleted, 
+//     heroesFetched, 
+//     heroesFetching, 
+//     heroesFetchingError 
+// } from "../actions";
 
-const initialState = {
-    heroes: [],
-    heroesLoadingStatus: 'idle',
-}
+// const initialState = {
+//     heroes: [],
+//     heroesLoadingStatus: 'idle',
+// }
 
-const heroesReducer = createReducer(initialState, {
-    [heroesFetching]: state => { state.heroesLoadingStatus = 'loading' },
-    [heroesFetched]: (state, action) => {
-                state.heroesLoadingStatus = 'idle';
-                state.heroes = action.payload;
-            },
-    [heroesFetchingError]: state => { state.heroesLoadingStatus = 'error' },
-    [heroDeleted]: (state, action) => { state.heroes = state.heroes.filter(item => item.id !== action.payload) },
-    [heroCreated]: (state, action) => { state.heroes.push(action.payload) }
-}, [], state => state)
+// const heroesReducer = createReducer(initialState, {
+//     [heroesFetching]: state => { state.heroesLoadingStatus = 'loading' },
+//     [heroesFetched]: (state, action) => {
+//                 state.heroesLoadingStatus = 'idle';
+//                 state.heroes = action.payload;
+//             },
+//     [heroesFetchingError]: state => { state.heroesLoadingStatus = 'error' },
+//     [heroDeleted]: (state, action) => { state.heroes = state.heroes.filter(item => item.id !== action.payload) },
+//     [heroCreated]: (state, action) => { state.heroes.push(action.payload) }
+// }, [], state => state)
 
 // const heroesReducer = createReducer(initialState, builder => {
 //     builder
@@ -77,4 +77,4 @@ const heroesReducer = createReducer(initialState, {
 //     }
 // }
 
-export default heroesReducer;
+// export default heroesReducer;

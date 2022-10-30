@@ -1,4 +1,4 @@
-import heroesReducer from '../reducers/heroes';
+import heroes from '../components/heroesList/heroesSlice';
 import filtersReducer from '../reducers/filters';
 import { configureStore } from '@reduxjs/toolkit';
 
@@ -18,20 +18,20 @@ const stringMiddleware = (store) => {
     }
 }
 
-const enhanser = (createStore) => (...args) => {
-    const store = createStore(...args)
+// const enhanser = (createStore) => (...args) => {
+//     const store = createStore(...args)
 
-    const oldDispatch = store.dispatch;
-    store.dispatch = (action) => {
-        if (typeof action === 'string') {
-            return oldDispatch({
-                type: action
-            })
-        }
-        return oldDispatch(action)
-    }
-    return store;
-}
+//     const oldDispatch = store.dispatch;
+//     store.dispatch = (action) => {
+//         if (typeof action === 'string') {
+//             return oldDispatch({
+//                 type: action
+//             })
+//         }
+//         return oldDispatch(action)
+//     }
+//     return store;
+// }
 
 // const store = createStore(
 //     combineReducers({heroesReducer,filtersReducer}),
@@ -43,7 +43,7 @@ const enhanser = (createStore) => (...args) => {
 
 const store = configureStore({
     reducer: {
-        heroesReducer,
+        heroes,
         filtersReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(stringMiddleware),
