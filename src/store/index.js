@@ -1,6 +1,7 @@
 import heroes from '../components/heroesList/heroesSlice';
-import filtersReducer from '../reducers/filters';
+// import filtersReducer from '../reducers/filters';
 import { configureStore } from '@reduxjs/toolkit';
+import filters from '../components/heroesFilters/filtersSlice';
 
 //либо вместо store можно записать ({dispatch, getState})
 // const stringMiddleware = ({dispatch, getState}) => {
@@ -44,7 +45,7 @@ const stringMiddleware = (store) => {
 const store = configureStore({
     reducer: {
         heroes,
-        filtersReducer
+        filters
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(stringMiddleware),
     devTools: process.env.NODE_ENV != 'production',

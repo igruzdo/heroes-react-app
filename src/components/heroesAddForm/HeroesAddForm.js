@@ -10,7 +10,10 @@ const HeroesAddForm = () => {
     const [heroDescr, setHeroDescr] = useState('');
     const [heroElement, setHeroElement] = useState('');
 
-    const {filters, filtersLoadingStatus} = useSelector(state => state.filtersReducer);
+    const {filters, filtersLoadingStatus} = useSelector(state => {
+        console.log(state.filters)
+        return state.filters
+    });
     const dispatch = useDispatch();
     const {request} = useHttp();
 
@@ -39,9 +42,10 @@ const HeroesAddForm = () => {
         } else if (status === "error") {
             return <option>Ошибка загрузки</option>
         }
-
+        
         if (filters && filters.length > 0 ) {
             return filters.map(({name, label}) => {
+                // eslint-disable-next-line
                 if (name === 'all')  return;
 
                 return <option key={name} value={name}>{label}</option>
